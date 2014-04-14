@@ -1,0 +1,12 @@
+# view AndroidManifest.xml #generated:30
+-keep class ge.drivers.automobiles.CarsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:13
+-keep class ge.drivers.automobiles.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:21
+-keep class ge.drivers.automobiles.ModelsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:36
+-keep class ge.drivers.automobiles.PropertiesActivity { <init>(...); }
+
