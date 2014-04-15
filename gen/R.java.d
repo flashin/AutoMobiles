@@ -1,0 +1,24 @@
+D:\Java\AutoMobiles\gen\ge\drivers\automobiles\R.java \
+ : D:\Java\AutoMobiles\res\drawable\noimage.png \
+D:\Java\AutoMobiles\res\drawable\search_button.png \
+D:\Java\AutoMobiles\res\layout\about.xml \
+D:\Java\AutoMobiles\res\layout\car_images.xml \
+D:\Java\AutoMobiles\res\layout\car_short_desc.xml \
+D:\Java\AutoMobiles\res\layout\car_title.xml \
+D:\Java\AutoMobiles\res\layout\main.xml \
+D:\Java\AutoMobiles\res\layout\main_activity_actions.xml \
+D:\Java\AutoMobiles\res\layout\make_item.xml \
+D:\Java\AutoMobiles\res\layout\property.xml \
+D:\Java\AutoMobiles\res\raw\car_logo.png \
+D:\Java\AutoMobiles\res\raw\small_logo.png \
+D:\Java\AutoMobiles\res\raw\star_empty.png \
+D:\Java\AutoMobiles\res\raw\star_full.png \
+D:\Java\AutoMobiles\res\values\strings.xml \
+D:\Java\AutoMobiles\res\values\styles.xml \
+D:\Java\AutoMobiles\bin\res\drawable\noimage.png \
+D:\Java\AutoMobiles\bin\res\drawable\search_button.png \
+D:\Java\AutoMobiles\bin\res\raw\car_logo.png \
+D:\Java\AutoMobiles\bin\res\raw\small_logo.png \
+D:\Java\AutoMobiles\bin\res\raw\star_empty.png \
+D:\Java\AutoMobiles\bin\res\raw\star_full.png \
+D:\Java\AutoMobiles\bin\AndroidManifest.xml \
