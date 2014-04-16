@@ -25,19 +25,25 @@
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="MainActivity" />
+                android:value="ge.drivers.automobiles.MainActivity" />
         </activity>
         <activity android:name="CarsActivity"
                   android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.CARS" />
             </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ge.drivers.automobiles.ModelsActivity" />
         </activity>
         <activity android:name="PropertiesActivity"
                   android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.PROPERTIES" />
             </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ge.drivers.automobiles.CarsActivity" />
         </activity>
     </application>
 </manifest> 

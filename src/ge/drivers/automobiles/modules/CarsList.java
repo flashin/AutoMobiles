@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,19 +41,17 @@ public class CarsList extends ArrayAdapter<String> {
     };
     private Context context;
     private DatabaseManager dbManager = null;
+    private Intent intent;
     private int model_id = 0;
-    private String make_name = null;
-    private String model_name = null;
     private List<CarItem> carItems = null;
     private List<View> views = null;
 
-    public CarsList(Context context, int res, int model_id, String make_name, String model_name) {
+    public CarsList(Context context, int res, Intent intent) {
 
         super(context, res);
         this.context = context;
-        this.model_id = model_id;
-        this.make_name = make_name;
-        this.model_name = model_name;
+        this.intent = intent;
+        this.model_id = intent.getIntExtra("model_id", 0);
         carItems = new ArrayList<CarItem>();
         views = new ArrayList<View>();
     }
@@ -215,12 +214,14 @@ public class CarsList extends ArrayAdapter<String> {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
                     if (carItems.get(position).type == 3) {
-                        Intent intent = new Intent(context, PropertiesActivity.class);
-                        intent.putExtra("make_name", make_name);
-                        intent.putExtra("model_name", model_name);
-                        intent.putExtra("car_id", carItems.get(position).car_id);
-                        intent.putExtra("car_title", carItems.get(position).title + " " + carItems.get(position).engine);
-                        context.startActivity(intent);
+                        Intent newIntent = new Intent(context, PropertiesActivity.class);
+                        newIntent.putExtra("make_id", intent.getIntExtra("make_id", 0));
+                        newIntent.putExtra("model_id", intent.getIntExtra("model_id", 0));
+                        newIntent.putExtra("make_name", intent.getStringExtra("make_name"));
+                        newIntent.putExtra("model_name", intent.getStringExtra("model_name"));
+                        newIntent.putExtra("car_id", carItems.get(position).car_id);
+                        newIntent.putExtra("car_title", carItems.get(position).title + " " + carItems.get(position).engine);
+                        context.startActivity(newIntent);
                     }
                 } catch (Exception e) {
                     MyAlert.alertWin(context, e.toString());

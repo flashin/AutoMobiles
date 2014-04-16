@@ -135,6 +135,7 @@ public class ModelsList extends ArrayAdapter<String> {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
                     Intent intent = new Intent(context, CarsActivity.class);
+                    intent.putExtra("make_id", make_id);
                     intent.putExtra("model_id", ids[position]);
                     intent.putExtra("make_name", make_title);
                     intent.putExtra("model_name",  names[position]);

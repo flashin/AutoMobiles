@@ -5,8 +5,8 @@
 package ge.drivers.automobiles;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.ListView;
 import ge.drivers.automobiles.lib.MyAlert;
 import ge.drivers.automobiles.modules.ModelsList;
@@ -15,7 +15,7 @@ import ge.drivers.automobiles.modules.ModelsList;
  *
  * @author alexx
  */
-public class ModelsActivity extends Activity {
+public class ModelsActivity extends ActionBarActivity {
 
     /**
      * Called when the activity is first created.

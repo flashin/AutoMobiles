@@ -5,8 +5,9 @@
 package ge.drivers.automobiles;
 
 import android.app.ActionBar;
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.ListView;
 import ge.drivers.automobiles.lib.MyAlert;
 import ge.drivers.automobiles.modules.PropertiesList;
@@ -15,7 +16,7 @@ import ge.drivers.automobiles.modules.PropertiesList;
  *
  * @author alexx
  */
-public class PropertiesActivity extends Activity {
+public class PropertiesActivity extends ActionBarActivity {
 
     /**
      * Called when the activity is first created.
@@ -46,5 +47,22 @@ public class PropertiesActivity extends Activity {
         catch (Exception e){
             MyAlert.alertWin(this, e.toString());
         }
+    }
+
+    @Override
+    public Intent getSupportParentActivityIntent() {
+        Intent parentIntent = getIntent();
+        int make_id = parentIntent.getIntExtra("make_id", 0);
+        int model_id = parentIntent.getIntExtra("model_id", 0);
+        String make_name = parentIntent.getStringExtra("make_name");
+        String model_name = parentIntent.getStringExtra("model_name");
+
+        Intent newIntent = new Intent(this, CarsActivity.class);
+        newIntent.putExtra("make_id", make_id);
+        newIntent.putExtra("model_id", model_id);
+        newIntent.putExtra("make_name", make_name);
+        newIntent.putExtra("model_name", model_name);
+        
+        return newIntent;
     }
 }
