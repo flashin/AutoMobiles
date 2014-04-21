@@ -2,12 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
->
+              android:layout_height="fill_parent" >
     <TextView
-        android:id="@+id/post_title"
+        android:id="@+id/total_makes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_about"/>
+        android:paddingTop="20sp"
+        android:paddingBottom="10sp"
+        android:paddingLeft="10sp" />
+    <TextView
+        android:id="@+id/total_models"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10sp"
+        android:paddingLeft="10sp" />
+    <TextView
+        android:id="@+id/total_cars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10sp"
+        android:paddingLeft="10sp" />
 </LinearLayout>
 

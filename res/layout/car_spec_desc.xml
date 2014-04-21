@@ -6,13 +6,35 @@
               android:gravity="left|center"
               android:padding="3sp">
     <LinearLayout
+        android:id="@+id/car_first_image"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="4sp"
+        android:paddingRight="4sp"
+        android:orientation="horizontal"
+        android:gravity="left|center" >
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/car_fields"
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical" >
         <TextView
+            android:id="@+id/make_model_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="#979797" />
+        <TextView
             android:id="@+id/car_engine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="#979797" />
+        <TextView
+            android:id="@+id/car_type_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"

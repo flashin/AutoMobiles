@@ -72,7 +72,11 @@ public class ServerConn {
             protected Bitmap doInBackground(String... args) {
 
                 try {
-                    Bitmap bm = downloadImage(args[0]);
+                    Bitmap bm = BitmapCache.getInstance().getBitmapFromDiskCache(args[0]);
+                    if (bm == null) {
+                        bm = downloadImage(args[0]);
+                        BitmapCache.getInstance().addBitmapToCache(args[0], bm);
+                    }
                     return bm;
                 } catch (Exception e) {
                     error = e.toString();
@@ -87,6 +91,51 @@ public class ServerConn {
                     im.setImageBitmap(result);
                 } else {
                     im.setImageResource(MyResource.getDrawable(im.getContext(), "noimage"));
+                }
+            }
+        };
+        loader.execute(new String[]{img_url});
+    }
+
+    // Load url in image view
+    public static void loadUrlInImageView(final ImageView im, String url, final int height) {
+
+        String img_url = ServerConn.url + url;
+        AsyncTask loader = new AsyncTask<String, Void, Bitmap>() {
+
+            private String error = null;
+
+            @Override
+            protected Bitmap doInBackground(String... args) {
+
+                try {
+                    Bitmap bm = BitmapCache.getInstance().getBitmapFromDiskCache(args[0]);
+                    if (bm == null) {
+                        bm = downloadImage(args[0]);
+                        BitmapCache.getInstance().addBitmapToCache(args[0], bm);
+                    }
+                    return bm;
+                } catch (Exception e) {
+                    error = e.toString();
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Bitmap result) {
+
+                try {
+                    if (result != null && result.getByteCount() > 0 && result.getHeight() > 0) {
+                        int reswidth = result.getWidth();
+                        int resheight = result.getHeight();
+                        float width = (float) reswidth * ((float) height / (float) resheight);
+
+                        im.setImageBitmap(Bitmap.createScaledBitmap(result, (int) width, height, false));
+                    } else {
+                        im.setImageResource(MyResource.getDrawable(im.getContext(), "noimage"));
+                    }
+                } catch (Exception e) {
+                    MyAlert.alertWin(im.getContext(), e.toString());
                 }
             }
         };

@@ -10,10 +10,7 @@ import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 import ge.drivers.automobiles.db.DatabaseManager;
 import ge.drivers.automobiles.db.SQLiteDBManager;
 import ge.drivers.automobiles.lib.MyAlert;
@@ -78,14 +75,14 @@ public class PropertiesList extends ArrayAdapter<String> {
                     query = "select p.name as prop_key, c.value as prop_value from Properties p, Prop_to_car c where p.id = c.property_id and c.car_id = " + args[0] + " order by p.order_no asc";
                     cursor = dbManager.qin(query);
                     cnt = cursor.getCount();
-                    if (cnt > 0) {                        
+                    if (cnt > 0) {
                         keys = new String[cnt];
                         values = new String[cnt];
                         views = new View[cnt + starting_views];
-                        for (int j = 0; j < starting_views; j++){
+                        for (int j = 0; j < starting_views; j++) {
                             views[j] = null;
                         }
-                        
+
                         int i = 0;
                         while (cursor.moveToNext()) {
                             views[i + starting_views] = null;
@@ -126,6 +123,20 @@ public class PropertiesList extends ArrayAdapter<String> {
         };
         loader.execute(new String[]{car_id + ""});
     }
+    
+    //Change car favorite option
+    public boolean changeFavoriteOption(int is_favorite){
+    
+        int new_favorite = is_favorite == 1 ? 0 : 1;
+        
+        if (dbManager != null && car_id > 0){
+            String query = "update Cars set is_favorite = " + new_favorite + " where id = " + car_id;
+            dbManager.qout(query);
+            return true;
+        }
+        
+        return false;
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -146,10 +157,13 @@ public class PropertiesList extends ArrayAdapter<String> {
                 } else if (n == 2 && images != null && position == 1) {
                     LinearLayout v = (LinearLayout) inflater.inflate(MyResource.getLayout(context, "car_images"), null);
                     if (images.length > 0) {
+                        LinearLayout imgs = (LinearLayout) ((HorizontalScrollView) v.getChildAt(0)).getChildAt(0);
                         //Thumbnail
-                        ImageView IMG = new ImageView(context);
-                        ServerConn.loadUrlInImageView(IMG, images[0]);
-                        v.addView(IMG);
+                        for (int i = 0; i < images.length; i++) {
+                            ImageView IMG = new ImageView(context);
+                            ServerConn.loadUrlInImageView(IMG, images[i]);
+                            imgs.addView(IMG);
+                        }
                     }
                     views[position] = v;
                 } else if (position >= n) {
