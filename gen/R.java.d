@@ -557,6 +557,7 @@ D:\Java\AutoMobiles\res\drawable\noimage.png \
 D:\Java\AutoMobiles\res\drawable\search_button.png \
 D:\Java\AutoMobiles\res\drawable\star_empty.png \
 D:\Java\AutoMobiles\res\drawable\star_full.png \
+D:\Java\AutoMobiles\res\drawable\update.png \
 D:\Java\AutoMobiles\res\layout\about.xml \
 D:\Java\AutoMobiles\res\layout\car_images.xml \
 D:\Java\AutoMobiles\res\layout\car_short_desc.xml \
@@ -567,6 +568,7 @@ D:\Java\AutoMobiles\res\layout\make_item.xml \
 D:\Java\AutoMobiles\res\layout\property.xml \
 D:\Java\AutoMobiles\res\menu\favorite_actions.xml \
 D:\Java\AutoMobiles\res\menu\main_activity_actions.xml \
+D:\Java\AutoMobiles\res\menu\search_activity_actions.xml \
 D:\Java\AutoMobiles\res\raw\car_logo.png \
 D:\Java\AutoMobiles\res\raw\small_logo.png \
 D:\Java\AutoMobiles\res\values\strings.xml \
@@ -576,6 +578,7 @@ D:\Java\AutoMobiles\bin\res\drawable\noimage.png \
 D:\Java\AutoMobiles\bin\res\drawable\search_button.png \
 D:\Java\AutoMobiles\bin\res\drawable\star_empty.png \
 D:\Java\AutoMobiles\bin\res\drawable\star_full.png \
+D:\Java\AutoMobiles\bin\res\drawable\update.png \
 D:\Java\AutoMobiles\bin\res\raw\car_logo.png \
 D:\Java\AutoMobiles\bin\res\raw\small_logo.png \
 D:\Java\AutoMobiles\bin\AndroidManifest.xml \

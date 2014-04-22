@@ -6,8 +6,4 @@
           android:title="@string/action_search"
           yourapp:showAsAction="always"
           yourapp:actionViewClass="android.widget.SearchView" />
-    <item android:id="@+id/action_update_db"
-          android:icon="@drawable/update"
-          android:title="@string/action_update_db"
-          yourapp:showAsAction="ifRoom" />
 </menu>

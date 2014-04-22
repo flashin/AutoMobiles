@@ -2,15 +2,17 @@ package ge.drivers.automobiles;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.SearchView;
 import ge.drivers.automobiles.fragments.AboutFragment;
 import ge.drivers.automobiles.fragments.BrowseFragment;
@@ -110,5 +112,45 @@ public class MainActivity extends ActionBarActivity {
 
         public void onTabReselected(Tab tab, FragmentTransaction ft) {
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_update_db:
+                updateDatabase();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public void updateDatabase() {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle(this.getString(R.string.update_db_title));
+        dialog.setMessage(this.getString(R.string.update_db_question));
+
+        String ok_but = "Yes";
+        String no_but = "No";
+        final Context context = this;
+        dialog.setPositiveButton(ok_but, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+
+                MyAlert.alertSuccessWin(context, context.getString(R.string.update_db_title), context.getString(R.string.update_db_success));
+            }
+        });
+        dialog.setNegativeButton(no_but, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

@@ -976,6 +976,7 @@ containing a value of this type.
         public static final int search_button=0x7f020058;
         public static final int star_empty=0x7f020059;
         public static final int star_full=0x7f02005a;
+        public static final int update=0x7f02005b;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;
@@ -991,6 +992,7 @@ containing a value of this type.
         public static final int action_menu_presenter=0x7f070017;
         public static final int action_mode_close_button=0x7f070024;
         public static final int action_search=0x7f07004f;
+        public static final int action_update_db=0x7f070050;
         public static final int activity_chooser_view_content=0x7f070025;
         public static final int always=0x7f07000b;
         public static final int beginning=0x7f070011;
@@ -1121,6 +1123,7 @@ containing a value of this type.
     public static final class menu {
         public static final int favorite_actions=0x7f0e0000;
         public static final int main_activity_actions=0x7f0e0001;
+        public static final int search_activity_actions=0x7f0e0002;
     }
     public static final class raw {
         public static final int car_logo=0x7f060000;
@@ -1169,17 +1172,21 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0c000b;
         public static final int action_favorite=0x7f0c000f;
         public static final int action_search=0x7f0c000e;
-        public static final int app_about=0x7f0c0012;
-        public static final int app_browse=0x7f0c0010;
-        public static final int app_favorites=0x7f0c0011;
+        public static final int action_update_db=0x7f0c0010;
+        public static final int app_about=0x7f0c0013;
+        public static final int app_browse=0x7f0c0011;
+        public static final int app_favorites=0x7f0c0012;
         public static final int app_name=0x7f0c000d;
-        public static final int label_car_type=0x7f0c0015;
-        public static final int label_doors=0x7f0c0013;
-        public static final int label_years=0x7f0c0014;
-        public static final int search_hint=0x7f0c0016;
-        public static final int total_cars=0x7f0c0019;
-        public static final int total_makes=0x7f0c0017;
-        public static final int total_models=0x7f0c0018;
+        public static final int label_car_type=0x7f0c0016;
+        public static final int label_doors=0x7f0c0014;
+        public static final int label_years=0x7f0c0015;
+        public static final int search_hint=0x7f0c0017;
+        public static final int total_cars=0x7f0c001a;
+        public static final int total_makes=0x7f0c0018;
+        public static final int total_models=0x7f0c0019;
+        public static final int update_db_question=0x7f0c001c;
+        public static final int update_db_success=0x7f0c001d;
+        public static final int update_db_title=0x7f0c001b;
     }
     public static final class style {
         public static final int MyActionBar=0x7f0d0084;

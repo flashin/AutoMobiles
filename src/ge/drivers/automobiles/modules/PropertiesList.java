@@ -157,11 +157,17 @@ public class PropertiesList extends ArrayAdapter<String> {
                 } else if (n == 2 && images != null && position == 1) {
                     LinearLayout v = (LinearLayout) inflater.inflate(MyResource.getLayout(context, "car_images"), null);
                     if (images.length > 0) {
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        lp.setMargins(9, 0, 0, 0);
+                        
                         LinearLayout imgs = (LinearLayout) ((HorizontalScrollView) v.getChildAt(0)).getChildAt(0);
                         //Thumbnail
                         for (int i = 0; i < images.length; i++) {
                             ImageView IMG = new ImageView(context);
-                            ServerConn.loadUrlInImageView(IMG, images[i]);
+                            if (i > 0){
+                                IMG.setLayoutParams(lp);
+                            }
+                            ServerConn.loadUrlInImageView(IMG, images[i], 320);
                             imgs.addView(IMG);
                         }
                     }

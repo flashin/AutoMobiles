@@ -3,6 +3,7 @@
     <string name="app_name">AutoMobiles</string>
     <string name="action_search">Search</string>
     <string name="action_favorite">Favorite</string>
+    <string name="action_update_db">Update</string>
     <string name="app_browse">Browse</string>
     <string name="app_favorites">Favorites</string>
     <string name="app_about">About</string>
@@ -13,4 +14,7 @@
     <string name="total_makes">Total Makes</string>
     <string name="total_models">Total Models</string>
     <string name="total_cars">Total Cars</string>
+    <string name="update_db_title">Update</string>
+    <string name="update_db_question">Do you want to update the database?</string>
+    <string name="update_db_success">Database has been updated</string>
 </resources>

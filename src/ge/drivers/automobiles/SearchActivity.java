@@ -69,7 +69,7 @@ public class SearchActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_activity_actions, menu);
+        inflater.inflate(R.menu.search_activity_actions, menu);
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =

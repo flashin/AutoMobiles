@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:gravity="left"
         android:textColor="#979797"
-        android:padding="5sp" />
+        android:padding="5sp"
+        android:paddingTop="8sp"
+        android:paddingBottom="8sp" />
     <TextView
         android:id="@+id/prop_value"
         android:layout_weight="1"
@@ -20,5 +22,7 @@
         android:gravity="right"
         android:textColor="#373737"
         android:textStyle="bold"
-        android:padding="5sp" />
+        android:padding="5sp"
+        android:paddingTop="8sp"
+        android:paddingBottom="8sp" />
 </LinearLayout>
