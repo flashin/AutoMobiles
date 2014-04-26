@@ -14,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ListView;
 import android.widget.SearchView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdRequest.Builder;
+import com.google.android.gms.ads.AdView;
 import ge.drivers.automobiles.lib.MyAlert;
 import ge.drivers.automobiles.modules.CarsList;
 
@@ -42,6 +45,10 @@ public class SearchActivity extends ActionBarActivity {
             lv = (ListView) findViewById(R.id.browse_list);
 
             searchResult(getIntent());
+
+            AdRequest adRequest = new AdRequest.Builder().build();
+            AdView adView = (AdView) findViewById(R.id.ad_view);
+            adView.loadAd(adRequest);
         } catch (Exception e) {
             MyAlert.alertWin(this, e.toString());
         }

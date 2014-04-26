@@ -13,6 +13,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdRequest.Builder;
+import com.google.android.gms.ads.AdView;
 import ge.drivers.automobiles.lib.MyAlert;
 import ge.drivers.automobiles.modules.PropertiesList;
 
@@ -24,6 +27,7 @@ public class PropertiesActivity extends ActionBarActivity {
 
     private int is_favorite = 0;
     private PropertiesList propList = null;
+    Intent parentIntent = null;
 
     /**
      * Called when the activity is first created.
@@ -33,32 +37,52 @@ public class PropertiesActivity extends ActionBarActivity {
         super.onCreate(icicle);
         // ToDo add your GUI initialization code here
         try {
-            ActionBar actionBar = this.getActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            is_favorite = this.getIntent().getIntExtra("is_favorite", 0);
-            String make_name = this.getIntent().getStringExtra("make_name");
-            String model_name = this.getIntent().getStringExtra("model_name");
-            String title = make_name + " " + model_name;
-            String car_title = this.getIntent().getStringExtra("car_title");
-            actionBar.setTitle(title);
-            actionBar.setDisplayShowTitleEnabled(true);
-            actionBar.show();
-
-            setContentView(R.layout.main);
-            ListView lv = (ListView) findViewById(R.id.browse_list);
-
-            int car_id = this.getIntent().getIntExtra("car_id", 0);
-            propList = new PropertiesList(this, R.layout.car_title, car_id, car_title);
-            lv.setAdapter(propList);
-            propList.loadPropertiesList();
+            parentIntent = getIntent();
+            createProperties(parentIntent);
         } catch (Exception e) {
             MyAlert.alertWin(this, e.toString());
         }
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+
+        try {
+            parentIntent = intent;
+            createProperties(parentIntent);
+        } catch (Exception e) {
+            MyAlert.alertWin(this, e.toString());
+        }
+    }
+
+    private void createProperties(Intent intent) {
+
+        ActionBar actionBar = this.getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        is_favorite = intent.getIntExtra("is_favorite", 0);
+        String make_name = intent.getStringExtra("make_name");
+        String model_name = intent.getStringExtra("model_name");
+        String title = make_name + " " + model_name;
+        String car_title = intent.getStringExtra("car_title");
+        actionBar.setTitle(title);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.show();
+
+        setContentView(R.layout.main);
+        ListView lv = (ListView) findViewById(R.id.browse_list);
+
+        int car_id = intent.getIntExtra("car_id", 0);
+        propList = new PropertiesList(this, R.layout.car_title, car_id, car_title);
+        lv.setAdapter(propList);
+        propList.loadPropertiesList();
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        AdView adView = (AdView) findViewById(R.id.ad_view);
+        adView.loadAd(adRequest);
+    }
+
+    @Override
     public Intent getSupportParentActivityIntent() {
-        Intent parentIntent = getIntent();
         int make_id = parentIntent.getIntExtra("make_id", 0);
         int model_id = parentIntent.getIntExtra("model_id", 0);
         String make_name = parentIntent.getStringExtra("make_name");
@@ -68,12 +92,10 @@ public class PropertiesActivity extends ActionBarActivity {
         if (parentIntent.getIntExtra("from_favorites", 0) == 1) {
             newIntent = new Intent(this, MainActivity.class);
             newIntent.putExtra("active_tab", 1);
-        }
-        else if (parentIntent.getStringExtra("keyword") != null){
+        } else if (parentIntent.getStringExtra("keyword") != null) {
             newIntent = new Intent(this, SearchActivity.class);
             newIntent.putExtra("keyword", parentIntent.getStringExtra("keyword"));
-        }
-        else {
+        } else {
             newIntent = new Intent(this, CarsActivity.class);
             newIntent.putExtra("make_id", make_id);
             newIntent.putExtra("model_id", model_id);

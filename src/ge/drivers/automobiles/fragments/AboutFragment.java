@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdRequest.Builder;
+import com.google.android.gms.ads.AdView;
 import ge.drivers.automobiles.lib.MyAlert;
 import ge.drivers.automobiles.lib.MyResource;
 import ge.drivers.automobiles.modules.AboutInfo;
@@ -59,13 +62,14 @@ public class AboutFragment extends Fragment {
                         MyAlert.alertWin(context, error);
                     } else {
                         try {
-                            TextView txt = (TextView) aboutLayout.getChildAt(0);
+                            LinearLayout infoLayout = (LinearLayout) aboutLayout.getChildAt(0);
+                            TextView txt = (TextView) infoLayout.getChildAt(0);
                             txt.setText(context.getString(MyResource.getString(context, "total_makes")) + ": " + about.getTotalMakes());
                             
-                            txt = (TextView) aboutLayout.getChildAt(1);
+                            txt = (TextView) infoLayout.getChildAt(1);
                             txt.setText(context.getString(MyResource.getString(context, "total_models")) + ": " + about.getTotalModels());
                             
-                            txt = (TextView) aboutLayout.getChildAt(2);
+                            txt = (TextView) infoLayout.getChildAt(2);
                             txt.setText(context.getString(MyResource.getString(context, "total_cars")) + ": " + about.getTotalCars());
                         } catch (Exception e) {
                             MyAlert.alertWin(context, e.toString());
@@ -74,6 +78,10 @@ public class AboutFragment extends Fragment {
                 }
             };
             loader.execute(new String[]{});
+
+            AdRequest adRequest = new AdRequest.Builder().build();
+            AdView adView = (AdView) aboutLayout.findViewById(MyResource.getResource(context, "ad_view"));
+            adView.loadAd(adRequest);
 
             return aboutLayout;
         } catch (Exception e) {

@@ -89,11 +89,10 @@ public class ServerConn {
 
                 if (result != null && result.getByteCount() > 0) {
                     im.setImageBitmap(result);
-                } else {
-                    im.setImageResource(MyResource.getDrawable(im.getContext(), "noimage"));
                 }
             }
         };
+        im.setImageResource(MyResource.getDrawable(im.getContext(), "noimage"));
         loader.execute(new String[]{img_url});
     }
 

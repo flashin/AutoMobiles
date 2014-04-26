@@ -8,6 +8,7 @@ import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import ge.drivers.automobiles.fragments.BrowseFragment;
 import ge.drivers.automobiles.fragments.FavoritesFragment;
 import ge.drivers.automobiles.lib.BitmapCache;
 import ge.drivers.automobiles.lib.MyAlert;
+import ge.drivers.automobiles.modules.UpdateDB;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -32,33 +34,53 @@ public class MainActivity extends ActionBarActivity {
             //init image cache
             BitmapCache.getInstance().initCache(this);
 
-            ActionBar actionBar = this.getActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(false);
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-            actionBar.setDisplayShowTitleEnabled(false);
-
-            Tab[] tabs = new Tab[3];
-            tabs[0] = actionBar.newTab().setText(R.string.app_browse).setTabListener(new TabListener<BrowseFragment>(
-                    this, "browse", BrowseFragment.class));
-            tabs[1] = actionBar.newTab().setText(R.string.app_favorites).setTabListener(new TabListener<FavoritesFragment>(
-                    this, "favorites", FavoritesFragment.class));
-            tabs[2] = actionBar.newTab().setText(R.string.app_about).setTabListener(new TabListener<AboutFragment>(
-                    this, "about", AboutFragment.class));
-
-            int active_tab = this.getIntent().getIntExtra("active_tab", 0);
-            for (int i = 0; i < tabs.length; i++) {
-                if (active_tab == i) {
-                    actionBar.addTab(tabs[i], true);
-                } else {
-                    actionBar.addTab(tabs[i]);
-                }
-            }
-
-            actionBar.show();
+            createTabs(getIntent());
         } catch (Exception e) {
             //alert exception
             MyAlert.alertWin(this, e.toString());
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        try {
+            ActionBar actionBar = this.getActionBar();
+            if (actionBar.getTabCount() > 0) {
+                actionBar.removeAllTabs();
+            }
+            createTabs(intent);
+        } catch (Exception e) {
+            //alert exception
+            MyAlert.alertWin(this, e.toString());
+        }
+    }
+
+    private void createTabs(Intent intent) {
+
+        ActionBar actionBar = this.getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        Tab[] tabs = new Tab[3];
+        tabs[0] = actionBar.newTab().setText(R.string.app_browse).setTabListener(new TabListener<BrowseFragment>(
+                this, "browse", BrowseFragment.class));
+        tabs[1] = actionBar.newTab().setText(R.string.app_favorites).setTabListener(new TabListener<FavoritesFragment>(
+                this, "favorites", FavoritesFragment.class));
+        tabs[2] = actionBar.newTab().setText(R.string.app_about).setTabListener(new TabListener<AboutFragment>(
+                this, "about", AboutFragment.class));
+
+        int active_tab = intent.getIntExtra("active_tab", 0);
+        for (int i = 0; i < tabs.length; i++) {
+            if (active_tab == i) {
+                actionBar.addTab(tabs[i], true);
+            } else {
+                actionBar.addTab(tabs[i]);
+            }
+        }
+
+        actionBar.show();
     }
 
     @Override
@@ -141,7 +163,8 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
 
-                MyAlert.alertSuccessWin(context, context.getString(R.string.update_db_title), context.getString(R.string.update_db_success));
+                UpdateDB UpdateDB = new UpdateDB(context);
+                UpdateDB.execute(new String[]{});
             }
         });
         dialog.setNegativeButton(no_but, new DialogInterface.OnClickListener() {

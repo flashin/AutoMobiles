@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdRequest.Builder;
+import com.google.android.gms.ads.AdView;
 import ge.drivers.automobiles.lib.MyAlert;
 import ge.drivers.automobiles.lib.MyResource;
 import ge.drivers.automobiles.modules.MakesList;
@@ -30,11 +33,15 @@ public class BrowseFragment extends Fragment {
         try {
             LinearLayout mainLayout = (LinearLayout) inflater.inflate(MyResource.getLayout(context, "main"), container, false);
 
-            ListView lv = (ListView) mainLayout.getChildAt(0);
+            ListView lv = (ListView) mainLayout.findViewById(MyResource.getResource(context, "browse_list"));
             MakesList makesList = new MakesList(context, MyResource.getResource(context, "make_item"));
             lv.setAdapter(makesList);
             makesList.loadMakesList();
             lv.setOnItemClickListener(makesList.getClickListener());
+
+            AdRequest adRequest = new AdRequest.Builder().build();
+            AdView adView = (AdView) mainLayout.findViewById(MyResource.getResource(context, "ad_view"));
+            adView.loadAd(adRequest);
 
             return mainLayout;
         } catch (Exception e) {

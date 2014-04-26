@@ -62,4 +62,11 @@ public class BitmapCache {
 
         return mDiskLruCache.get(key);
     }
+    
+    public void clearCache(Context context){
+    
+        if (mDiskLruCache != null){
+            DiskLruCache.clearCache(context, DISK_CACHE_SUBDIR);
+        }
+    }
 }
